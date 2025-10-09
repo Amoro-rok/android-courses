@@ -95,18 +95,10 @@ public class MainActivity extends AppCompatActivity {
         }
         double inp = Double.parseDouble(etFrom.getText().toString());
 
-        String sFrom = (String) sp_From.getSelectedItem();
-        String sTo = (String) sp_To.getSelectedItem();
-
-        double to = 0.0f;
-
-        if (l_btn.isChecked())
-        {
-
-        } else if (s_btn.isChecked())
-        {
-
-        }
+        Unit unit_from = (Unit) sp_From.getSelectedItem();
+        Unit unit_to = (Unit) sp_To.getSelectedItem();
+        double to = inp * unit_from.coeff * unit_to.coeff;
+        resulttxt.setText(String.valueOf(to));
     }
 
     public void on_switch(View v)
