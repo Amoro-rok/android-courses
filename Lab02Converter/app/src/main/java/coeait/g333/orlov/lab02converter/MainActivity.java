@@ -46,9 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    ArrayAdapter <Unit> length = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
-    ArrayAdapter <Unit> speed = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
-    ArrayAdapter <Unit> mass = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         m_btn = findViewById(R.id.mass_btn);
         s_btn = findViewById(R.id.speed_btn);
 
+        ArrayAdapter <Unit> length = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter <Unit> speed = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter <Unit> mass = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
 
         length.add(new Unit("mm",0.001f));
         length.add(new Unit("cm", 0.01f));
@@ -110,6 +111,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void on_switch(View v)
     {
+
+        ArrayAdapter <Unit> length = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter <Unit> speed = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter <Unit> mass = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+
+        length.add(new Unit("mm",0.001f));
+        length.add(new Unit("cm", 0.01f));
+        length.add(new Unit("m", 1.0f));
+        length.add(new Unit("km", 1000.0f));
+
+        speed.add(new Unit("m/s", 0.27777777778f));
+        speed.add(new Unit("km/h", 1.0f));
+        speed.add(new Unit("miles/h", 0.62137119f));
+
+        mass.add(new Unit("mg", 0.001f));
+        mass.add(new Unit("g", 1.0f));
+        mass.add(new Unit("kg", 1000.0f));
 
         if (l_btn.isChecked())
         {
