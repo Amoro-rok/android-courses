@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         Unit unit_from = (Unit) sp_From.getSelectedItem();
         Unit unit_to = (Unit) sp_To.getSelectedItem();
         double to = inp * unit_from.coeff / unit_to.coeff;
-        resulttxt.setText(String.valueOf(to));
+        resulttxt.setText(String.format("%.6f", to).replaceAll("0*$", "").replaceAll("\\.$", ""));
     }
 
     public void on_switch(View v)
