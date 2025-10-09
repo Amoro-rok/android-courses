@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Lab 01 - Calculator</string>
+    <string name="main_title">Calculator</string>
+    <string name="first_value">Value 1</string>
+    <string name="second_value">Value 2</string>
+    <string name="addition_btn">Add</string>
+    <string name="substraction_btn">Sub</string>
+    <string name="multiplication_btn">Mul</string>
+    <string name="division_btn">Div</string>
+    <string name="sin_btn">Sin</string>
+    <string name="cos_btn">Cos</string>
+    <string name="tan_btn">Tan</string>
+    <string name="sqrt_btn">Sqrt</string>
+    <string name="pow_btn">Pow</string>
+    <string name="result_title">Result</string>
+    <string name="error_div_0">Error. Division by 0</string>
+</resources>

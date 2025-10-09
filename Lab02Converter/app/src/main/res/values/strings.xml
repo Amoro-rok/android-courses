@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab02Converter</string>
+    <string name="from_text">From:</string>
+    <string name="to_text">To:</string>
+</resources>
