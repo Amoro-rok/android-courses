@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/textView"
@@ -42,7 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -64,6 +66,40 @@
             android:gravity="right" />
     </LinearLayout>
 
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/length_btn"
+        android:gravity="center_horizontal"
+        android:onClick="on_switch"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/length_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="on_switch"
+            android:text="@string/trb" />
+
+        <RadioButton
+            android:id="@+id/speed_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:onClick="on_switch"
+            android:text="@string/fstradiobutton" />
+
+        <RadioButton
+            android:id="@+id/mass_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:onClick="on_switch"
+            android:text="@string/sndradiobutton" />
+
+    </RadioGroup>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,6 +110,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="on_convert"
             android:text="Button" />
     </LinearLayout>
 </LinearLayout>

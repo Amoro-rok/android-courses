@@ -1,10 +1,14 @@
 package coeait.g333.orlov.lab02converter;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +22,33 @@ public class MainActivity extends AppCompatActivity {
     Spinner sp_To;
     EditText etFrom;
     TextView resulttxt;
+
+    RadioButton l_btn, m_btn, s_btn;
+
+    public class Unit
+    {
+        public String name;
+        public double coeff;
+
+        public Unit(String n, double c)
+        {
+            name = n;
+            coeff = c;
+        }
+
+        public String toString()
+        {
+            return name;
+        }
+        public double getCoeff()
+        {
+            return coeff;
+        }
+    }
+
+    ArrayAdapter <Unit> length = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+    ArrayAdapter <Unit> speed = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
+    ArrayAdapter <Unit> mass = new <Unit> ArrayAdapter(this, android.R.layout.simple_list_item_1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,31 +64,65 @@ public class MainActivity extends AppCompatActivity {
         sp_To = findViewById(R.id.spTo);
         etFrom = findViewById(R.id.from_value);
         resulttxt = findViewById(R.id.result_text);
+        l_btn = findViewById(R.id.length_btn);
+        m_btn = findViewById(R.id.mass_btn);
+        s_btn = findViewById(R.id.speed_btn);
 
-        ArrayAdapter <String> adp = new <String> ArrayAdapter(this, android.R.layout.simple_list_item_1);
-        adp.add("mm");
-        adp.add("cm");
-        adp.add("m");
-        adp.add("km");
 
-        sp_From.setAdapter(adp);
-        sp_To.setAdapter(adp);
+        length.add(new Unit("mm",0.001f));
+        length.add(new Unit("cm", 0.01f));
+        length.add(new Unit("m", 1.0f));
+        length.add(new Unit("km", 1000.0f));
+
+        speed.add(new Unit("m/s", 0.27777777778f));
+        speed.add(new Unit("km/h", 1.0f));
+        speed.add(new Unit("miles/h", 0.62137119f));
+
+        mass.add(new Unit("mg", 0.001f));
+        mass.add(new Unit("g", 1.0f));
+        mass.add(new Unit("kg", 1000.0f));
+
+        sp_From.setAdapter(length);
+        sp_To.setAdapter(length);
     }
-    private void on_convert(View v)
+    public void on_convert(View v)
     {
-        float inp = Float.parseFloat(etFrom.getText().toString());
+        if (sp_From.toString().isBlank())
+        {
+            Toast.makeText(this, "Error!!!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        double inp = Double.parseDouble(etFrom.getText().toString());
 
         String sFrom = (String) sp_From.getSelectedItem();
         String sTo = (String) sp_To.getSelectedItem();
 
-        float to = 0.0f;
+        double to = 0.0f;
 
-        if (sFrom.equals("mm"))
+        if (l_btn.isChecked())
         {
-            if (sTo.equals("mm")) to = inp * 1.0f;
-            if (sTo.equals("cm")) to = inp / 10.0f;
-            if (sTo.equals("m")) to = inp / 100.0f;
-            if (sTo.equals("km")) to = inp / 1000000.0f;
+
+        } else if (s_btn.isChecked())
+        {
+
+        }
+    }
+
+    public void on_switch(View v)
+    {
+
+        if (l_btn.isChecked())
+        {
+            sp_From.setAdapter(length);
+            sp_To.setAdapter(length);
+        } else if (s_btn.isChecked())
+        {
+            sp_From.setAdapter(speed);
+            sp_To.setAdapter(speed);
+        } else if (m_btn.isChecked())
+        {
+            sp_From.setAdapter(mass);
+            sp_To.setAdapter(mass);
         }
     }
 }

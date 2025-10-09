@@ -2,4 +2,7 @@
     <string name="app_name">Lab02Converter</string>
     <string name="from_text">From:</string>
     <string name="to_text">To:</string>
+    <string name="fstradiobutton">Speed</string>
+    <string name="sndradiobutton">Mass</string>
+    <string name="trb">Length</string>
 </resources>
