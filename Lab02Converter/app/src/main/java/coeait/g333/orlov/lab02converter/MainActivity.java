@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     public class Unit
     {
         public String name;
-        public float coeff;
+        public double coeff;
 
-        public Unit(String n, float c)
+        public Unit(String n, double c)
         {
             name = n;
             coeff = c;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         {
             return name;
         }
-        public float getCoeff()
+        public double getCoeff()
         {
             return coeff;
         }
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         speed.add(new Unit("m/s", 3.6f));
         speed.add(new Unit("km/h", 1.0f));
-        speed.add(new Unit("miles/h", 1.60934400579f));
+        speed.add(new Unit("mi/h", 1.609344f));
 
         mass.add(new Unit("mg", 0.001f));
         mass.add(new Unit("g", 1.0f));
@@ -95,11 +95,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error!!!", Toast.LENGTH_SHORT).show();
             return;
         }
-        float inp = Float.parseFloat(etFrom.getText().toString());
+        double inp = Double.parseDouble(etFrom.getText().toString());
 
         Unit unit_from = (Unit) sp_From.getSelectedItem();
         Unit unit_to = (Unit) sp_To.getSelectedItem();
-        float to = inp * unit_from.coeff / unit_to.coeff;
+        double to = inp * unit_from.coeff / unit_to.coeff;
         resulttxt.setText(String.valueOf(to));
     }
 
