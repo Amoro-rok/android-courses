@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Lab03-FruitsMarket</string>
+    <string name="name_apple">Apple</string>
+    <string name="name_strawberry">Strawberry</string>
+    <string name="name_blueberry">Blueberry</string>
+    <string name="name_cherry">Cherry</string>
+    <string name="name_calcbutton">CALCULATE</string>
+    <string name="name_toastbutton">Toast</string>
+    <string name="name_textbutton">Text</string>
+    <string name="name_dialogbutton">Dialog</string>
 </resources>

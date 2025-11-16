@@ -37,7 +37,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Apple" />
+                android:text="@string/name_apple" />
 
             <EditText
                 android:id="@+id/editAmountApple"
@@ -76,7 +76,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Strawberry" />
+                android:text="@string/name_strawberry" />
 
             <EditText
                 android:id="@+id/editAmountStrawberry"
@@ -115,7 +115,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Blueberry" />
+                android:text="@string/name_blueberry" />
 
             <EditText
                 android:id="@+id/editAmountBlueberry"
@@ -154,7 +154,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cherry" />
+                android:text="@string/name_cherry" />
 
             <EditText
                 android:id="@+id/editAmountCherry"
@@ -192,21 +192,21 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:text="Toast" />
+                    android:text="@string/name_toastbutton" />
 
                 <RadioButton
                     android:id="@+id/textButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Text" />
+                    android:text="@string/name_textbutton" />
 
                 <RadioButton
                     android:id="@+id/dialogButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Dialog" />
+                    android:text="@string/name_dialogbutton" />
             </RadioGroup>
         </LinearLayout>
 
@@ -216,7 +216,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#AAAAAA"
             android:onClick="onCalc"
-            android:text="CALCULATE"
+            android:text="@string/name_calcbutton"
             android:textColor="@color/black" />
 
         <TextView
