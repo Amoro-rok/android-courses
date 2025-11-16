@@ -68,21 +68,25 @@ public class MainActivity extends AppCompatActivity {
     public void sqrt_click(View v)
     {
         float a = Float.parseFloat(val1.getText().toString());
-        result.setText(String.valueOf(Math.sqrt(a)));
+        float b = Float.parseFloat(val2.getText().toString());
+        result.setText(String.valueOf(Math.sqrt(a))+",\n"+String.valueOf(Math.sqrt(b)));
     }
     public void sin_click(View v)
     {
         float a = Float.parseFloat(val1.getText().toString());
-        result.setText(String.valueOf(Math.sin(a)));
+        float b = Float.parseFloat(val2.getText().toString());
+        result.setText(String.valueOf(Math.sin(a))+",\n"+String.valueOf(Math.sin(b)));
     }
     public void cos_click(View v)
     {
         float a = Float.parseFloat(val1.getText().toString());
-        result.setText(String.valueOf(Math.cos(a)));
+        float b = Float.parseFloat(val2.getText().toString());
+        result.setText(String.valueOf(Math.cos(a))+",\n"+String.valueOf(Math.cos(b)));
     }
     public void tan_click(View v)
     {
         float a = Float.parseFloat(val1.getText().toString());
-        result.setText(String.valueOf(Math.tan(a)));
+        float b = Float.parseFloat(val2.getText().toString());
+        result.setText(String.valueOf(Math.tan(a))+",\n"+String.valueOf(Math.tan(b)));
     }
 }
