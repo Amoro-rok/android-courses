@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab04 - Activities</string>
+    <string name="button_showdialog">SHOW ACTIVITY2</string>
+    <string name="button_exitapp">EXIT APP</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">CANCEL</string>
+    <string name="button_dialog">DIALOG</string>
+    <string name="dialog_text">Are you sure you want to exit?</string>
+</resources>
