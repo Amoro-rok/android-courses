@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         else if (outputChoice[1].isChecked()) result.setText(res);
         else {
             AlertDialog.Builder bld = new AlertDialog.Builder(this);
+            bld.setNeutralButton("OK", null);
             AlertDialog dlg = bld.create();
             dlg.setIcon(R.drawable.img_lemon);
             dlg.setTitle("result");

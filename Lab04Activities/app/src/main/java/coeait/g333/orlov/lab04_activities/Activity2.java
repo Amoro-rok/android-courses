@@ -17,6 +17,7 @@ public class Activity2 extends AppCompatActivity {
     EditText txt;
     Switch input_switch1;
     Switch input_switch2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class Activity2 extends AppCompatActivity {
         input_switch2.setChecked(i.getBooleanExtra("abc3", false));
     }
 
-    public void on_ok_click(View v){
+    public void on_ok_click(View v) {
         Intent i = new Intent();
 
         String s = txt.getText().toString();
@@ -52,7 +53,7 @@ public class Activity2 extends AppCompatActivity {
         finish();
     }
 
-    public void on_cancel_click(View v){
+    public void on_cancel_click(View v) {
         setResult(RESULT_CANCELED);
         finish();
     }

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     CheckBox input_button1;
     CheckBox input_button2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         input_button2 = findViewById(R.id.input_btn2);
     }
 
-    public void on_exit_click(View v){
+    public void on_exit_click(View v) {
         AlertDialog.Builder bld = new AlertDialog.Builder(this);
         bld.setPositiveButton("Yes", (dialog, which) -> {
             finish();
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         dlg.show();
     }
 
-    public void on_dialog_click(View v){
+    public void on_dialog_click(View v) {
         String s = input.getText().toString();
 
         Intent i = new Intent(this, Activity2.class);
@@ -68,12 +69,9 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(i, 555);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
-        if (requestCode == 555)
-        {
-            if (data != null)
-            {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 555) {
+            if (data != null) {
                 String s = data.getStringExtra("qwe");
                 Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
 
@@ -86,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void on_btndialog_click(View v){
+    public void on_btndialog_click(View v) {
         AlertDialog.Builder bld = new AlertDialog.Builder(this);
         AlertDialog dlg = bld.create();
 
