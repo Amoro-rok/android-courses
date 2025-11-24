@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lab 05 - Notes</string>
+    <string name="btn_new_txt">New</string>
+    <string name="btn_edit_txt">Edit</string>
+    <string name="btn_del_txt">Del</string>
+    <string name="note_title_txt">Title</string>
+    <string name="note_text_txt">Text</string>
+    <string name="btn_cancel_txt">Cancel</string>
+    <string name="btn_save_txt">Save</string>
+</resources>
