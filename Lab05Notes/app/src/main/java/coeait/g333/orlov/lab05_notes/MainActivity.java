@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 n.content = data.getStringExtra("note-content");
             }
         }
+        adp.notifyDataSetChanged();
         super.onActivityResult(requestCode, resultCode, data);
     }
 
