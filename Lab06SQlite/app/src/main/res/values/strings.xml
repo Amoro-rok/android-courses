@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab 05 - SQLite</string>
+    <string name="key_txt">Key</string>
+    <string name="val_txt">Value</string>
+    <string name="ins_txt">INSERT</string>
+    <string name="upd_txt">UPDATE</string>
+    <string name="sel_txt">SELECT</string>
+    <string name="del_txt">DELETE</string>
+</resources>
