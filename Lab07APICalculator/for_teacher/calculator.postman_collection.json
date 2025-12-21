@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "41ab9665-c54c-4e87-8cb9-88343bb8a719",
+		"name": "calculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48541874",
+		"_collection_link": "https://romanorlovv-6335209.postman.co/workspace/R0k1N's-Team's-Workspace~03c2cbb8-4597-4107-83bb-e359c9b42ccd/collection/48541874-41ab9665-c54c-4e87-8cb9-88343bb8a719?action=share&source=collection_link&creator=48541874"
+	},
+	"item": [
+		{
+			"name": "api-calculator",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "add",
+							"host": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "substract",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "substract",
+							"host": [
+								"substract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multiply",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "multiply",
+							"host": [
+								"multiply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "divide",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "divide",
+							"host": [
+								"divide"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		}
+	]
+}

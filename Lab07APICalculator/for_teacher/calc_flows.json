@@ -1,0 +1,22 @@
+[
+    {
+        "id": "eec3f2d2c4602afd",
+        "type": "function",
+        "z": "c5fe902eddd32cda",
+        "name": "sin",
+        "func": "msg.payload = Math.sin(parseFloat(msg.payload.a));\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 420,
+        "wires": [
+            [
+                "c328368b36a2db42"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="txt_a">Num A:</string>
+    <string name="txt_b">Num B:</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_sub">Sub</string>
+    <string name="btn_mul">Mul</string>
+    <string name="btn_div">Div</string>
+    <string name="btn_sqrt">Sqrt</string>
+    <string name="btn_pow">Pow</string>
+    <string name="btn_sin">Sin</string>
+    <string name="btn_cos">Cos</string>
+    <string name="txt_res">Result:</string>
+    <string name="dev">Орлов Роман 333</string>
+</resources>
