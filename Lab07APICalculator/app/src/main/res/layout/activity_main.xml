@@ -16,6 +16,35 @@
         tools:text="@string/dev" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/ip_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ip_ttl" />
+
+        <EditText
+            android:id="@+id/editip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:textAlignment="textEnd" />
+
+        <Button
+            android:id="@+id/create_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="on_ip_update"
+            android:text="@string/ip_set_ttl" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -25,8 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView"
-            tools:text="@string/txt_a" />
+            android:text="@string/txt_a" />
 
         <EditText
             android:id="@+id/editNumA"
@@ -34,7 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textAlignment="textEnd" />
 
     </LinearLayout>
 
@@ -49,8 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView"
-            tools:text="@string/txt_b" />
+            android:text="@string/txt_b" />
 
         <EditText
             android:id="@+id/editNumB"
@@ -58,7 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textAlignment="textEnd" />
 
     </LinearLayout>
 

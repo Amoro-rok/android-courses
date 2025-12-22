@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab 05 - SQLite</string>
+    <string name="app_name">Lab 06 - SQLite</string>
     <string name="key_txt">Key</string>
     <string name="val_txt">Value</string>
     <string name="ins_txt">INSERT</string>

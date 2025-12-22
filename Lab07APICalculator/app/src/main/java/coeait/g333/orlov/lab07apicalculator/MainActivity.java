@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText edit_a, edit_b;
+    EditText edit_a, edit_b, edit_ip;
     TextView res_txt;
 
     Button btn_add, btn_sub, btn_mul, btn_div,
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         edit_a = findViewById(R.id.editNumA);
         edit_b = findViewById(R.id.editNumB);
+        edit_ip = findViewById(R.id.editip);
         res_txt = findViewById(R.id.txt_result);
         res_txt.setText(res_txt.getText()+"0.0");
 
@@ -58,15 +59,20 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+
+    }
+
+
+    public void on_ip_update(View v)
+    {
+        String ip = edit_ip.getText().toString().trim();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.37.164.173:1880/")
+                .baseUrl("http://" + ip + ":1880/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
         service = retrofit.create(CalculatorService.class);
     }
-
-
     public void on_btn_click(View v)
     {
         String a = edit_a.getText().toString();

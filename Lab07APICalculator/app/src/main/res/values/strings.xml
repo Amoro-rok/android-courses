@@ -12,4 +12,6 @@
     <string name="btn_cos">Cos</string>
     <string name="txt_res">Result:</string>
     <string name="dev">Орлов Роман 333</string>
+    <string name="ip_ttl">IP:</string>
+    <string name="ip_set_ttl">Create</string>
 </resources>

@@ -56,4 +56,15 @@ public class DB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
+
+    public String get_keys() {
+        String sql = "SELECT * FROM my_test";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cur = db.rawQuery(sql, null);
+        String res = "";
+        while(cur.moveToNext()) {
+            res += cur.getString(0) + ", " + cur.getString(1) + "\n";
+        }
+        return res;
+    }
 }
