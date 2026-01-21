@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Lab 08 - Game of Life</string>
+    <string name="appname">GameOfLife</string>
+    <string name="devname">Орлов Роман</string>
+    <string name="nametxt">Name</string>
+    <string name="widthtxt">Width</string>
+    <string name="heighttxt">Height</string>
+    <string name="oktxt">Ok</string>
+    <string name="canceltxt">Cancel</string>
 </resources>
