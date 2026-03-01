@@ -13,10 +13,18 @@ import java.util.List;
 
 public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.FieldViewHolder> {
 
+    public interface onItemClickListener {
+        void onItemClick(FieldData fieldData, int position);
+    }
     public List<FieldData> fieldlist;
 
-    public FieldAdapter(ArrayList<FieldData> fieldlist) {
+
+    public onItemClickListener onClickListener;
+
+
+    public FieldAdapter(ArrayList<FieldData> fieldlist, onItemClickListener onClickListener) {
         this.fieldlist = fieldlist;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -31,20 +39,29 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.FieldViewHol
         FieldData fieldData = fieldlist.get(position);
         holder.fieldName.setText(fieldData.name);
         holder.fieldSize.setText("(" + fieldData.width + "x" + fieldData.height + ")");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onItemClick(fieldData, position);
+            }
+        });
     }
 
     public int getItemCount() {
         return fieldlist.size();
     }
 
+
     public static class FieldViewHolder extends RecyclerView.ViewHolder {
         public TextView fieldName;
         public TextView fieldSize;
+
 
         public FieldViewHolder(@NonNull View itemView) {
             super(itemView);
             fieldName = itemView.findViewById(R.id.tv_field_name);
             fieldSize = itemView.findViewById(R.id.tv_field_size);
+            itemView.setOnClickListener(null);
         }
     }
 }

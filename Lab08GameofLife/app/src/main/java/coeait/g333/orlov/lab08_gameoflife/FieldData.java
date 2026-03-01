@@ -14,10 +14,15 @@ public class FieldData {
     public int base_map;
 
 
-    public FieldData(String name, int width, int height) {
+    public FieldData(int id, String name, int width, int height, String map_data, Timestamp created, Timestamp modified, int base_map) {
+        this.id = id;
         this.name = name;
         this.width = width;
         this.height = height;
+        this.map_data = map_data;
+        this.created = created;
+        this.modified = modified;
+        this.base_map = base_map;
     }
 
 }

@@ -1,8 +1,11 @@
 package coeait.g333.orlov.lab08_gameoflife;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +18,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     FieldAdapter adapter;
     ArrayList<FieldData> fieldDataList;
     ImageView btn;
+
+    DB database;
+
+    int id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,22 +44,41 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+        database = new DB(this, "Field.db", null, 1);
+
         recyclerView = findViewById(R.id.rv_fields);
         btn = findViewById(R.id.addField_btn);
 
         fieldDataList = new ArrayList<>();
-        fieldDataList.add(new FieldData("Test", 10, 10));
-        fieldDataList.add(new FieldData("Test2", 20, 20));
-        fieldDataList.add(new FieldData("Test3", 30, 30));
-        fieldDataList.add(new FieldData("Test4", 40, 40));
-        fieldDataList.add(new FieldData("Test5", 50, 50));
-        fieldDataList.add(new FieldData("Test6", 60, 60));
-        fieldDataList.add(new FieldData("Test7", 70, 70));
-        fieldDataList.add(new FieldData("Test8", 80, 80));
-        fieldDataList.add(new FieldData("Test9", 90, 90));
-        fieldDataList.add(new FieldData("Test10", 100, 100));
+        String data[];
+        data = database.do_select(id);
+        while (data[0]!="(!) not found") {
+            id++;
+            fieldDataList.add(new FieldData(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]), data[4], new Timestamp(Long.parseLong(data[5])), new Timestamp(Long.parseLong(data[6])), Integer.parseInt(data[7])));
+            data = database.do_select(id);
+        }
 
-        adapter = new FieldAdapter(fieldDataList);
+        FieldAdapter.onItemClickListener onClickListener = new FieldAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(FieldData fieldData, int position) {
+
+                FieldData fd = fieldDataList.get(position);
+                if (fd != null) {
+                    Intent i = new Intent(MainActivity.this, FieldActivity.class);
+                    i.putExtra("id", fd.id);
+                    i.putExtra("name", fd.name);
+                    i.putExtra("width", fd.width);
+                    i.putExtra("height", fd.height);
+                    i.putExtra("map_data", fd.map_data);
+                    i.putExtra("created", fd.created);
+                    i.putExtra("modified", fd.modified);
+                    i.putExtra("base_map", fd.base_map);
+                    startActivityForResult(i, 12345);
+                }
+            }
+        };
+        adapter = new FieldAdapter(fieldDataList, onClickListener);
         recyclerView.setAdapter(adapter);
     }
     public void addField(View v) {
@@ -68,11 +96,16 @@ public class MainActivity extends AppCompatActivity {
         EditText height = view.findViewById(R.id.heightEditText);
 
         btnOk.setOnClickListener(v1 -> {
-            fieldDataList.add(new FieldData(name.getText().toString(),
+            database.do_insert(name.getText().toString(),
                     Integer.parseInt(width.getText().toString()),
-                    Integer.parseInt(height.getText().toString())));
-            adapter = new FieldAdapter(fieldDataList);
-            recyclerView.setAdapter(adapter);
+                    Integer.parseInt(height.getText().toString()),
+                    "0",
+                    0);
+            String data[];
+            data = database.do_select(id);
+            fieldDataList.add(new FieldData(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]), data[4], new Timestamp(Long.parseLong(data[5])), new Timestamp(Long.parseLong(data[6])), Integer.parseInt(data[7])));
+            adapter.notifyDataSetChanged();
+            id++;
             dlg.dismiss();
         });
 
@@ -83,5 +116,12 @@ public class MainActivity extends AppCompatActivity {
         dlg.setView(view);
         dlg.setTitle("Add field");
         dlg.show();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 1) {
+            if (data != null) {
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

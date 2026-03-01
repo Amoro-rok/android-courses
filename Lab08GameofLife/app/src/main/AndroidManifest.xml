@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab08GameOfLife">
         <activity
+            android:name=".FieldActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddWindow"
             android:exported="false" />
         <activity
