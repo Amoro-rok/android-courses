@@ -14,7 +14,8 @@
         android:text="Name"
         android:textAlignment="center"
         android:textSize="24sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/tv_field_size"
@@ -24,6 +25,7 @@
         android:textAlignment="center"
         android:fontFamily="@font/comic_neue"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
 </LinearLayout>

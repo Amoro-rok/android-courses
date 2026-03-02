@@ -36,27 +36,34 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public String[] do_select(int key) {
+    public FieldData do_select(int key) {
 
         String sql = "SELECT name, width, height, map_data, created, modified, base_map FROM Field WHERE id = '" + key + "';";
         SQLiteDatabase db = getReadableDatabase();
         Cursor cur = db.rawQuery(sql, null);
-        String[] res = new String[8];
+        String[] res_str = new String[2];
+        int[] res_int = new int[3];
+        long[] res_long = new long[2];
+        String name;
+        int width;
+        int height;
+        String map_data;
+        long created;
+        long modified;
+        int base_map;
 
         if (cur.moveToFirst() == true) {
-            res[0] = String.valueOf(key);
-            res[1] = cur.getString(0);
-            res[2] = cur.getString(1);
-            res[3] = cur.getString(2);
-            res[4] = cur.getString(3);
-            res[5] = cur.getString(4);
-            res[6] = cur.getString(5);
-            res[7] = cur.getString(6);
-            return res;
+            name = cur.getString(0); //name
+            width = cur.getInt(1); //width
+            height = cur.getInt(2); //height
+            map_data = cur.getString(3); //map_data
+            created = cur.getLong(4); //created
+            modified = cur.getLong(5); //modified
+            base_map = cur.getInt(6); //base_map
+            return new FieldData(key, name, width, height, map_data, new Timestamp(created), new Timestamp(modified), base_map);
         }
         System.out.println(key);
-        res[0] = "(!) not found";
-        return res;
+        return null;
     }
 
     public void on_update(String key, String value) {

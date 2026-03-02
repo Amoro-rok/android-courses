@@ -7,4 +7,10 @@
     <string name="heighttxt">Height</string>
     <string name="oktxt">Ok</string>
     <string name="canceltxt">Cancel</string>
+    <string name="field_name">Name: </string>
+    <string name="field_play">Play</string>
+    <string name="field_stop">Stop</string>
+    <string name="field_delete">Delete</string>
+    <string name="field_save">Save</string>
+    <string name="field_exit">Exit</string>
 </resources>

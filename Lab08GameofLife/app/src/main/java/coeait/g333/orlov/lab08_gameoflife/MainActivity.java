@@ -51,11 +51,10 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.addField_btn);
 
         fieldDataList = new ArrayList<>();
-        String data[];
-        data = database.do_select(id);
-        while (data[0]!="(!) not found") {
+        FieldData data = database.do_select(id);
+        while (data != null) {
             id++;
-            fieldDataList.add(new FieldData(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]), data[4], new Timestamp(Long.parseLong(data[5])), new Timestamp(Long.parseLong(data[6])), Integer.parseInt(data[7])));
+            fieldDataList.add(data);
             data = database.do_select(id);
         }
 
@@ -67,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 if (fd != null) {
                     Intent i = new Intent(MainActivity.this, FieldActivity.class);
                     i.putExtra("id", fd.id);
-                    i.putExtra("name", fd.name);
+                    /*i.putExtra("name", fd.name);
                     i.putExtra("width", fd.width);
                     i.putExtra("height", fd.height);
                     i.putExtra("map_data", fd.map_data);
                     i.putExtra("created", fd.created);
                     i.putExtra("modified", fd.modified);
-                    i.putExtra("base_map", fd.base_map);
+                    i.putExtra("base_map", fd.base_map);*/
                     startActivityForResult(i, 12345);
                 }
             }
@@ -101,9 +100,8 @@ public class MainActivity extends AppCompatActivity {
                     Integer.parseInt(height.getText().toString()),
                     "0",
                     0);
-            String data[];
-            data = database.do_select(id);
-            fieldDataList.add(new FieldData(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Integer.parseInt(data[3]), data[4], new Timestamp(Long.parseLong(data[5])), new Timestamp(Long.parseLong(data[6])), Integer.parseInt(data[7])));
+            FieldData data = database.do_select(id);
+            fieldDataList.add(data);
             adapter.notifyDataSetChanged();
             id++;
             dlg.dismiss();
@@ -121,7 +119,9 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == 1) {
             if (data != null) {
+
+            }
+            super.onActivityResult(requestCode, resultCode, data);
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }
