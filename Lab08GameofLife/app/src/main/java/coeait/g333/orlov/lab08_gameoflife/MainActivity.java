@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     DB database;
 
-    int id = 1;
-
     FieldAdapter.onItemClickListener onClickListener;
 
     @Override
@@ -51,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         database = new DB(this, "Field.db", null, 1);
 
-        //database.onCreate(database.getWritableDatabase());
         //database.onDrop(database.getWritableDatabase());
+        //database.onCreate(database.getWritableDatabase());
         //database.onClear(database.getWritableDatabase());
         //database.onCreateRecord(database.getWritableDatabase());
 
@@ -70,11 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 if (fd != null) {
                     Intent i = new Intent(MainActivity.this, FieldActivity.class);
                     i.putExtra("id", fd.id);
-                    String[] names = new String[fieldDataList.get(fieldDataList.size() - 1).id];
-                    for (FieldData f : fieldDataList) {
-                        names[f.id - 1] = f.name;
-                    }
-                    i.putExtra("names", names);
+                    i.putExtra("amount_of_fields", fieldDataList.size());
                     startActivityForResult(i, 12345);
                 }
             }
@@ -85,21 +79,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadFields() {
-        id = 1;
+        int id = 1;
         fieldDataList.clear();
         FieldData data;
         int border = 0;
-        int valid_id = 0;
         while (true) {
             data = database.do_select(id);
             id++;
             if (data.id == -1) {
                 border++;
-                if (border == 1)  valid_id = id-1;
-                if (border == 10) {
-                    id = valid_id;
-                    break;
-                }
+                if (border == 10)  break;
                 continue;
             }
             fieldDataList.add(data);
@@ -138,10 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     Integer.parseInt(height.getText().toString()),
                     "0",
                     0);
-            FieldData data = database.do_select(id);
-            fieldDataList.add(data);
-            adapter.notifyDataSetChanged();
-            id++;
+            loadFields();
             dlg.dismiss();
         });
 

@@ -47,10 +47,11 @@ public class DB extends SQLiteOpenHelper {
 
 
     public void do_insert(String name, int width, int height, String map_data, int base_map) {
-        long date = System.currentTimeMillis() / 1000L;
+        long date = System.currentTimeMillis() + 3*60*60*1000;
         String sql = String.format("INSERT INTO Field (name, width, height, map_data, created, modified, base_map) VALUES ('%s', %s, %s, '%s', %s, %s, %s);", name, width, height, map_data, date, date, base_map);
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
+        System.out.println("Inserted");
     }
 
     public FieldData do_select(int key) {
@@ -78,7 +79,7 @@ public class DB extends SQLiteOpenHelper {
 
     public void on_update(FieldData data) {
         String sql = "UPDATE Field SET map_data = '" + data.map_data + "', name = '" + data.name +
-                "', modified = '" + System.currentTimeMillis() / 1000L + "' WHERE id = '" + data.id + "';";
+                "', modified = '" + System.currentTimeMillis() + 3*60*60*1000 + "' WHERE id = '" + data.id + "';";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }

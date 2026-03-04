@@ -27,10 +27,18 @@
             android:textStyle="bold" />
 
         <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00000000"
+            android:onClick="on_copy_click"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/copy" />
+
+        <ImageButton
             android:id="@+id/info_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
             android:background="#00000000"
             android:onClick="on_info_click"
             android:scaleType="centerInside"

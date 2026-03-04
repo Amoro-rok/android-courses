@@ -18,6 +18,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FieldActivity extends AppCompatActivity {
 
     EditText edit_name;
@@ -26,7 +29,7 @@ public class FieldActivity extends AppCompatActivity {
     DB database;
     FieldData data;
 
-    String[] names;
+    int amount;
 
     boolean playing = false;
     Handler handler = new Handler();
@@ -56,7 +59,7 @@ public class FieldActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         data = database.do_select(i.getIntExtra("id", 0));
-        names = i.getStringArrayExtra("names");
+        amount = i.getIntExtra("amount_of_fields", 1);
         if (data != null) {
             edit_name.setText(data.name);
             field.set_data(data.width, data.height, data.map_data);
@@ -68,10 +71,11 @@ public class FieldActivity extends AppCompatActivity {
         String newName = edit_name.getText().toString();
         String newData = field.get_data();
         if (newName.equals(data.name) && newData.equals(data.map_data)) return;
-        for (int i = 0; i < names.length; i++) {
-            if (i == data.id - 1) continue;
-            if (names[i] == null) continue;
-            if (names[i].equals(newName)) {
+        ArrayList<ArrayList<String>> names = getNames();
+        for (int i = 0; i < names.size(); i++) {
+            if (data.id == Integer.parseInt(names.get(i).get(1))) continue;
+            if (names.get(i) == null) continue;
+            if (names.get(i).get(0).equals(newName)) {
                 Toast.makeText(this, "Field with this name already exists", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -169,7 +173,7 @@ public class FieldActivity extends AppCompatActivity {
 
         created.setText(data.created.toString());
         modified.setText(data.modified.toString());
-        if (data.base_map != 0) basemap.setText(names[data.base_map]);
+        if (data.base_map != 0) basemap.setText(database.do_select(data.base_map).name);
         else basemap.setText("None");
         id.setText(String.valueOf(data.id));
 
@@ -180,5 +184,50 @@ public class FieldActivity extends AppCompatActivity {
         dlg.setView(view);
         dlg.setTitle("Info");
         dlg.show();
+    }
+
+    public void on_copy_click(View v) {
+        if (data == null) return;
+        FieldData newField = database.do_select(data.id);
+        ArrayList<ArrayList<String>> names = getNames();
+        int i = 1;
+        boolean check = true;
+        while (check) {
+            String new_name = data.name + "(" + String.valueOf(i) + ")";
+            for (int j = 0; j < names.size(); j++) {
+                if (names.get(j) == null) continue;
+                if (names.get(j).get(0).equals(new_name)) {
+                    i++;
+                    break;
+                }
+                if (j == names.size() - 1) {
+                    newField.name = new_name;
+                    check = false;
+                }
+            }
+        }
+        database.do_insert(newField.name, newField.width, newField.height, newField.map_data, data.id);
+    }
+
+    public ArrayList<ArrayList<String>> getNames() {
+        ArrayList<ArrayList<String>> names = new ArrayList<>();
+        int id = 1;
+        FieldData data_for_name;
+        int border = 0;
+        while (true) {
+            data_for_name = database.do_select(id);
+            id++;
+            if (data_for_name.id == -1) {
+                border++;
+                if (border == 10) break;
+                continue;
+            }
+            ArrayList<String> name = new ArrayList<>();
+            name.add(data_for_name.name);
+            name.add(String.valueOf(data_for_name.id));
+            names.add(name);
+            data_for_name = database.do_select(id);
+        }
+        return names;
     }
 }
