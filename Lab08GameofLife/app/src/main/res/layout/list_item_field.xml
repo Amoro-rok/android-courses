@@ -1,10 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:background="?android:attr/selectableItemBackground"
-    android:gravity="center|top"
+    android:gravity="center"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="0dp">
 
     <TextView
         android:id="@+id/tv_field_name"
@@ -13,19 +14,19 @@
         android:fontFamily="@font/comic_neue"
         android:text="Name"
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="normal|bold"
-        android:textColor="#000000"/>
+        android:textStyle="normal|bold" />
 
     <TextView
         android:id="@+id/tv_field_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/comic_neue"
         android:text="(10x10)"
         android:textAlignment="center"
-        android:fontFamily="@font/comic_neue"
+        android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

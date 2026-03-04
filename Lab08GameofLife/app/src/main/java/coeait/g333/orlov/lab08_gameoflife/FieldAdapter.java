@@ -3,9 +3,14 @@ package coeait.g333.orlov.lab08_gameoflife;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -34,9 +39,11 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.FieldViewHol
         return new FieldViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull FieldViewHolder holder, int position) {
         FieldData fieldData = fieldlist.get(position);
+        if (fieldData == null) return;
         holder.fieldName.setText(fieldData.name);
         holder.fieldSize.setText("(" + fieldData.width + "x" + fieldData.height + ")");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +57,6 @@ public class FieldAdapter extends RecyclerView.Adapter<FieldAdapter.FieldViewHol
     public int getItemCount() {
         return fieldlist.size();
     }
-
 
     public static class FieldViewHolder extends RecyclerView.ViewHolder {
         public TextView fieldName;

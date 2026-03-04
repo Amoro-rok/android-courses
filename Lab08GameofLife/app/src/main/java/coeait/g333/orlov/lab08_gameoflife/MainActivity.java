@@ -9,6 +9,8 @@ import android.webkit.ConsoleMessage;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     int id = 1;
 
+    FieldAdapter.onItemClickListener onClickListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,18 +51,18 @@ public class MainActivity extends AppCompatActivity {
 
         database = new DB(this, "Field.db", null, 1);
 
+        //database.onCreate(database.getWritableDatabase());
+        //database.onDrop(database.getWritableDatabase());
+        //database.onClear(database.getWritableDatabase());
+        //database.onCreateRecord(database.getWritableDatabase());
+
+
         recyclerView = findViewById(R.id.rv_fields);
         btn = findViewById(R.id.addField_btn);
 
         fieldDataList = new ArrayList<>();
-        FieldData data = database.do_select(id);
-        while (data != null) {
-            id++;
-            fieldDataList.add(data);
-            data = database.do_select(id);
-        }
 
-        FieldAdapter.onItemClickListener onClickListener = new FieldAdapter.onItemClickListener() {
+        onClickListener = new FieldAdapter.onItemClickListener() {
             @Override
             public void onItemClick(FieldData fieldData, int position) {
 
@@ -66,20 +70,44 @@ public class MainActivity extends AppCompatActivity {
                 if (fd != null) {
                     Intent i = new Intent(MainActivity.this, FieldActivity.class);
                     i.putExtra("id", fd.id);
-                    /*i.putExtra("name", fd.name);
-                    i.putExtra("width", fd.width);
-                    i.putExtra("height", fd.height);
-                    i.putExtra("map_data", fd.map_data);
-                    i.putExtra("created", fd.created);
-                    i.putExtra("modified", fd.modified);
-                    i.putExtra("base_map", fd.base_map);*/
+                    String[] names = new String[fieldDataList.get(fieldDataList.size() - 1).id];
+                    for (FieldData f : fieldDataList) {
+                        names[f.id - 1] = f.name;
+                    }
+                    i.putExtra("names", names);
                     startActivityForResult(i, 12345);
                 }
             }
         };
         adapter = new FieldAdapter(fieldDataList, onClickListener);
         recyclerView.setAdapter(adapter);
+        loadFields();
     }
+
+    public void loadFields() {
+        id = 1;
+        fieldDataList.clear();
+        FieldData data;
+        int border = 0;
+        int valid_id = 0;
+        while (true) {
+            data = database.do_select(id);
+            id++;
+            if (data.id == -1) {
+                border++;
+                if (border == 1)  valid_id = id-1;
+                if (border == 10) {
+                    id = valid_id;
+                    break;
+                }
+                continue;
+            }
+            fieldDataList.add(data);
+            data = database.do_select(id);
+        }
+        adapter.notifyDataSetChanged();
+    }
+
     public void addField(View v) {
         AlertDialog.Builder bld = new AlertDialog.Builder(this);
         AlertDialog dlg = bld.create();
@@ -95,6 +123,16 @@ public class MainActivity extends AppCompatActivity {
         EditText height = view.findViewById(R.id.heightEditText);
 
         btnOk.setOnClickListener(v1 -> {
+            if (name.getText().toString().equals("") || width.getText().toString().equals("") || height.getText().toString().equals("")) {
+                Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            for (FieldData fd : fieldDataList) {
+                if (fd.name.equals(name.getText().toString())) {
+                    Toast.makeText(this, "Field with this name already exists", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
             database.do_insert(name.getText().toString(),
                     Integer.parseInt(width.getText().toString()),
                     Integer.parseInt(height.getText().toString()),
@@ -117,11 +155,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == 1) {
-            if (data != null) {
-
-            }
-            super.onActivityResult(requestCode, resultCode, data);
-        }
+        super.onActivityResult(requestCode, resultCode, data);
+        loadFields();
     }
 }

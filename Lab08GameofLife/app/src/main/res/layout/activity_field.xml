@@ -27,18 +27,32 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/field_save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/info_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
             android:background="#00000000"
+            android:onClick="on_info_click"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/info" />
+
+        <ImageButton
+            android:id="@+id/field_save_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00000000"
+            android:onClick="on_save_click"
+            android:scaleType="centerInside"
             android:src="@drawable/save" />
 
         <ImageButton
             android:id="@+id/field_exit_btn"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="0"
             android:background="#00000000"
+            android:onClick="on_exit_click"
+            android:scaleType="centerInside"
             android:src="@drawable/log_out66" />
 
     </LinearLayout>
@@ -82,16 +96,18 @@
 
         <ImageButton
             android:id="@+id/field_delete_btn"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="#00000000"
+            android:onClick="on_delete_click"
+            android:scaleType="centerInside"
             android:src="@drawable/delete66" />
     </LinearLayout>
 
-    <SurfaceView
+    <coeait.g333.orlov.lab08_gameoflife.myimg
         android:id="@+id/field_surfaceview"
         android:layout_width="match_parent"
-        android:layout_height="488dp" />
+        android:layout_height="300dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -105,7 +121,7 @@
             android:layout_height="65dp"
             android:backgroundTint="#00000000"
             android:clickable="true"
-            android:onClick="addField"
+            android:onClick="on_play_click"
             android:src="@drawable/play"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -116,7 +132,7 @@
             android:layout_height="65dp"
             android:backgroundTint="#00000000"
             android:clickable="true"
-            android:onClick="addField"
+            android:onClick="on_pause_click"
             android:src="@drawable/pause"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -127,7 +143,7 @@
             android:layout_height="65dp"
             android:backgroundTint="#00000000"
             android:clickable="true"
-            android:onClick="addField"
+            android:onClick="on_stop_click"
             android:src="@drawable/stop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

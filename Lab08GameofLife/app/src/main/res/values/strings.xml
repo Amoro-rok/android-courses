@@ -13,4 +13,7 @@
     <string name="field_delete">Delete</string>
     <string name="field_save">Save</string>
     <string name="field_exit">Exit</string>
+    <string name="info_created">Created:</string>
+    <string name="info_modified">Modified:</string>
+    <string name="info_basemap">Base_map name:</string>
 </resources>
